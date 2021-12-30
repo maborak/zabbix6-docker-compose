@@ -1,6 +1,7 @@
 FROM ubuntu:21.10
 RUN apt-get update
 ARG DEBIAN_FRONTEND=noninteractive
+WORKDIR /build
 RUN apt-get -y install mariadb-client \
     mariadb-common \
     software-properties-common \
