@@ -39,6 +39,8 @@ RUN cd /tmp && \
     ./configure --enable-server --enable-agent --with-mysql --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --with-openipmi --with-ssh2 --with-unixodbc --enable-proxy --enable-java --enable-webservice --enable-ipv6 --with-ldap --enable-agent2 --with-openssl --with-libmodbus --prefix=/var/lib/zabbix && \
     make && \
     make install && \
+    make dbschema && \
     mv /tmp/zabbix/ui /var/lib/zabbix_ui && \
+    mv /tmp/zabbix/database /var/lib/zabbix_db && \
     rm -Rf /tmp/zabbix* /tmp/go/
 
