@@ -10,6 +10,7 @@ RUN apt-get -y install software-properties-common \
     build-essential \
     automake \
     pkg-config \
+    golang \
     autoconf \
     autogen \
     libmysqlclient-dev \
@@ -30,12 +31,10 @@ RUN apt-get -y install software-properties-common \
     rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp && \
-    curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz && \
-    tar -C /tmp -xvf go1.16.7.linux-amd64.tar.gz && \
-    export PATH=$PATH:/tmp/go/bin && \
     git clone https://github.com/zabbix/zabbix.git && \
     cd zabbix/ && \
-    sh bootstrap.sh && \
+    sh bootstrap.sh
+RUN cd /tmp/zabbix/ && \
     ./configure --enable-server --enable-agent --with-mysql --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --with-openipmi --with-ssh2 --with-unixodbc --enable-proxy --enable-java --enable-webservice --enable-ipv6 --with-ldap --enable-agent2 --with-openssl --with-libmodbus --prefix=/var/lib/zabbix && \
     make && \
     make install && \
